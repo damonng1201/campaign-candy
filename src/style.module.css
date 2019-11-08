@@ -1,0 +1,16 @@
+.briefTypeImg {
+    max-width: '100%';
+    border: 1px solid;
+}
+
+.colPadding {
+    padding: 1%;
+}
+
+.steps {
+    padding: 20px;
+}
+
+.btnContainer {
+    padding: 20px 5px;
+}
