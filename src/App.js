@@ -11,6 +11,7 @@ import AmplificationForm from './components/forms/Amplification/MainForm';
 import ContentCreativeForm from './components/forms/ContentAndCreative/MainForm';
 import IntegratedForm from './components/forms/Integrated/MainForm';
 import ResearchInsightsForm from './components/forms/ResearchAndInsights/MainForm';
+import DigitalAdsForm from './components/forms/DigitalAds/MainForm';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/research-insights">
             <ResearchInsightsForm/>
+          </Route>
+          <Route path="/digital-ads">
+            <DigitalAdsForm/>
           </Route>
           <Route path="/">
             <Home/>

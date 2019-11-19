@@ -13,14 +13,13 @@ export class Step5 extends Component {
                     <Col span={24} style={{ padding: '1%' }}>
                         <Title level={4}>COMMUNICATION / MESSAGE / PROPOSITION</Title>
                         <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>What is/will be your key digital campaign creative message?</Text>
+                            <Text strong className={CustomStyle.labelText}>What would you be testing/researching on?</Text>
                         </div>
                         <TextArea
-                            rows={4}
-                            name="message"
-                            value={this.props.values.message}
+                            rows={6}
+                            name="research"
+                            value={this.props.values.research}
                             onChange={this.props.handleChange}
-                            //helperText={(this.props.errors.message && this.props.touched.message) && this.props.errors.message}
                         />
                     </Col>
                 </Row>

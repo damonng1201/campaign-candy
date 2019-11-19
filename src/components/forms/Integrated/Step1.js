@@ -30,6 +30,7 @@ export class Step1 extends Component {
                             placeholder="Please provide a brief idea of what your campaign about"
                             value={this.props.values.ideation}
                             onChange={this.props.handleChange}
+                            //helperText={(this.props.errors.ideation && this.props.touched.ideation) && this.props.errors.ideation}
                         />
                     </Col>
                 </Row>

@@ -3,6 +3,10 @@
     border: 1px solid;
 }
 
+.briefType {
+    margin: 20px 0;
+}
+
 .colPadding {
     padding: 1%;
 }
@@ -13,4 +17,28 @@
 
 .btnContainer {
     padding: 20px 5px;
+}
+
+.headingLabel {
+    margin-top: 10px;
+    padding: 0 1%;
+}
+
+.headingLabel h4 {
+    margin-bottom: 0;
+}
+
+.labelContainer {
+    margin: 5px 0;
+}
+
+h4.briefType,
+.briefTypeImg,
+.labelText,
+.checkboxText {
+    color: #0b878f;
+}
+
+.checkboxText {
+    font-weight: 500;
 }

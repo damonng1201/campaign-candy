@@ -5,7 +5,7 @@ import FooterSection from '../FooterSection';
 import CustomStyle from '../../style.module.css'; 
 
 const { Header, Content } = Layout;
-const { Paragraph } = Typography;
+const { Title } = Typography;
 
 export class CreateBrief extends Component {
     render() {
@@ -17,9 +17,9 @@ export class CreateBrief extends Component {
                     </Header>
                     <Content style={{ width: '90%', margin: '20px auto auto', textAlign: 'center' }}>
                         <Row type="flex" justify="center">
-                            <Col md={24} lg={4}>
+                            <Col md={24} lg={24}>
                                 <Typography>
-                                    <Paragraph>Choose your brief type:</Paragraph>
+                                    <Title level={2} style={{color: '#0b878f', margin: '50px 0'}}>Choose your brief type:</Title>
                                 </Typography>
                             </Col>
                         </Row>
@@ -27,21 +27,32 @@ export class CreateBrief extends Component {
                             <Col sm={24} md={12} lg={6}>
                                 <Link to="/amplification">
                                     <img className={CustomStyle.briefTypeImg} src={ require("../../images/amplification.png") } alt="Amplification"></img>
+                                    <Title level={4} strong className={CustomStyle.briefType}>AMPLIFICATION</Title>
                                 </Link>
                             </Col>
                             <Col sm={24} md={12} lg={6}>
                                 <Link to="/content-creative">
                                     <img className={CustomStyle.briefTypeImg} src={ require("../../images/content_creative.png") } alt="Content and Creative"></img>
+                                    <Title level={4} className={CustomStyle.briefType}>CONTENT &amp; CREATIVE</Title>
                                 </Link>
                             </Col>
                             <Col sm={24} md={12} lg={6}>
                                 <Link to="/integrated">
                                     <img className={CustomStyle.briefTypeImg} src={ require("../../images/integrated.png") } alt="Integrated"></img>
+                                    <Title level={4} className={CustomStyle.briefType}>INTEGRATED</Title>
                                 </Link>
                             </Col>
                             <Col sm={24} md={12} lg={6}>
                                 <Link to="/research-insights">
                                     <img className={CustomStyle.briefTypeImg} src={ require("../../images/research_insights.png") } alt="Research and Insights"></img>
+                                    <Title level={4} className={CustomStyle.briefType}>RESEARCH &amp; INSIGHTS</Title>
+                                </Link>
+                            </Col>
+                        </Row>
+                        <Row type="flex" justify="center">
+                            <Col md={24} lg={24}>
+                                <Link to="/digital-ads">
+                                    <Title level={4} style={{color: '#0b878f', margin: '50px 0'}}>DIGITAL ADS</Title>
                                 </Link>
                             </Col>
                         </Row>

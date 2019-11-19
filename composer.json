@@ -1,0 +1,13 @@
+{
+    "name": "damonng/campaign_candy",
+    "authors": [
+        {
+            "name": "Damon Ng",
+            "email": "damonng@sph.com.sg"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.1",
+        "symfony/polyfill-mbstring": "^1.12"
+    }
+}

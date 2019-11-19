@@ -16,12 +16,12 @@ export class Step6 extends Component {
                             value={this.props.values.creativeFormat}
                             onChange={(checkedValue)=>this.props.setFieldValue('creativeFormat', checkedValue)}
                         >
-                            <Checkbox value="Image" className={CustomStyle.checkboxText}>Image</Checkbox>
-                            <Checkbox value="Audio" className={CustomStyle.checkboxText}>Audio</Checkbox>
+                            <Checkbox value="Print" className={CustomStyle.checkboxText}>Print</Checkbox>
+                            <Checkbox value="Digital" className={CustomStyle.checkboxText}>Digital</Checkbox>
                             <Checkbox value="Video" className={CustomStyle.checkboxText}>Video</Checkbox>
-                            <Checkbox value="Article" className={CustomStyle.checkboxText}>Article</Checkbox>
-                            <Checkbox value="HTML5" className={CustomStyle.checkboxText}>HTML5</Checkbox>
-                            <Checkbox value="HTML5 + Video" className={CustomStyle.checkboxText}>HTML5 + Video</Checkbox>
+                            <Checkbox value="Out Of Home (Digital)" className={CustomStyle.checkboxText}>Out Of Home (Digital)</Checkbox>
+                            <Checkbox value="Out Of Home (Static)" className={CustomStyle.checkboxText}>Out Of Home (Static)</Checkbox>
+                            <Checkbox value="Microsite" className={CustomStyle.checkboxText}>Microsite</Checkbox>
                         </Checkbox.Group>
                     </Col>
                 </Row>

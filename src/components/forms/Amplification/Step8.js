@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Typography, Checkbox, Input } from 'antd';
+import CustomStyle from '../../../style.module.css';
 
-const { Text } = Typography;
-
-const options = [
-    { label: 'CPM', value: 'CPM' },
-    { label: 'CPV', value: 'CPV' },
-    { label: 'CPC', value: 'CPC' }
-]
+const { Title, Text } = Typography;
 
 export class Step8 extends Component {
     constructor(props) {
@@ -20,19 +15,26 @@ export class Step8 extends Component {
             <React.Fragment>
                 <Row>
                     <Col span={24} style={{ padding: '1%' }}>
-                        <div><Text>MEASUREMENT</Text></div>
+                        <Title level={4}>MEASUREMENT</Title>
+                        <div className={CustomStyle.labelContainer}>
+                            <Text strong className={CustomStyle.labelText}>How is this measured? What would be your KPI to deliver?</Text>
+                        </div>
                         <Checkbox.Group
                             name='measurement'
-                            options={options}
                             value={this.props.values.measurement}
                             onChange={(checkedValue)=>this.props.setFieldValue('measurement', checkedValue)}
-                        />
-                        <Checkbox checked={this.props.values.measurementOthers} onChange={(e)=>{this.setState({enableOthersField:e.target.checked})}}>Others (Please specify)</Checkbox>
+                        >
+                            <Checkbox value="CPM" className={CustomStyle.checkboxText}>CPM</Checkbox>
+                            <Checkbox value="CPV" className={CustomStyle.checkboxText}>CPV</Checkbox>
+                            <Checkbox value="CPC" className={CustomStyle.checkboxText}>CPC</Checkbox>
+                            <Checkbox value="Others" className={CustomStyle.checkboxText} onChange={(e)=>{this.setState({enableOthersField:e.target.checked})}}>Others (Please specify)</Checkbox>
+                        </Checkbox.Group>
                         {this.state.enableOthersField &&(
                             <Input 
                                 name="measurementOthers"
                                 value={this.props.values.measurementOthers}
                                 onChange={this.props.handleChange}
+                                style={{ width: 200 }}
                             />
                         )}
                     </Col>

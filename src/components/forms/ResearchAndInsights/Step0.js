@@ -17,9 +17,7 @@ export class Step0 extends Component {
 
                 <Row>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
-                        <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>SALES/ACCOUNT LEAD</Text>
-                        </div>
+                        <div className={CustomStyle.labelContainer}><Text strong className={CustomStyle.labelText}>SALES/ACCOUNT LEAD</Text></div>
                         <Input
                             name="accountLead"
                             placeholder="Enter Name"
@@ -38,9 +36,7 @@ export class Step0 extends Component {
                 
                 <Row>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
-                        <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>ADVERTISER/AGENCY BRAND</Text>
-                        </div>
+                        <div className={CustomStyle.labelContainer}><Text strong className={CustomStyle.labelText}>ADVERTISER/AGENCY BRAND</Text></div>
                         <Input
                             name="advertiserBrand"
                             value={this.props.values.advertiserBrand}
@@ -50,9 +46,7 @@ export class Step0 extends Component {
                         />
                     </Col>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
-                        <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>NAME</Text>
-                        </div>
+                        <div className={CustomStyle.labelContainer}><Text strong className={CustomStyle.labelText}>NAME</Text></div>
                         <Input
                             name="name"
                             placeholder="Enter Name"
@@ -72,9 +66,7 @@ export class Step0 extends Component {
 
                 <Row>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
-                        <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>PROJECT TITLE</Text>
-                        </div>
+                        <div className={CustomStyle.labelContainer}><Text strong className={CustomStyle.labelText}>PROJECT TITLE</Text></div>
                         <Input
                             name="projectTitle"
                             value={this.props.values.projectTitle}
@@ -93,9 +85,7 @@ export class Step0 extends Component {
 
                 <Row>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
-                        <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>LAUNCH DATE</Text>
-                        </div>
+                        <div className={CustomStyle.labelContainer}><Text strong className={CustomStyle.labelText}>LAUNCH DATE</Text></div>
                         <DatePicker
                             format="DD/MM/YYYY"
                             value={moment(this.props.values.launchDate, 'DD/MM/YYYY')}
@@ -105,9 +95,7 @@ export class Step0 extends Component {
                         />
                     </Col>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
-                        <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>CAMPAIGN END DATE</Text>
-                        </div>
+                        <div className={CustomStyle.labelContainer}><Text strong className={CustomStyle.labelText}>CAMPAIGN END DATE</Text></div>
                         <DatePicker
                             format="DD/MM/YYYY"
                             value={moment(this.props.values.campaignEndDate, 'DD/MM/YYYY')}

@@ -5,22 +5,21 @@ import CustomStyle from '../../../style.module.css';
 const { Title, Text } = Typography;
 const { TextArea } = Input;
 
-export class Step5 extends Component {
+export class Step6 extends Component {
     render() {
         return (
             <React.Fragment>
                 <Row>
                     <Col span={24} style={{ padding: '1%' }}>
-                        <Title level={4}>COMMUNICATION / MESSAGE / PROPOSITION</Title>
+                        <Title level={4}>CREATIVE FORMATS AVAILABLE</Title>
                         <div className={CustomStyle.labelContainer}>
-                            <Text strong className={CustomStyle.labelText}>What is/will be your key digital campaign creative message?</Text>
+                            <Text strong className={CustomStyle.labelText}>Please confirm types of material for research</Text>
                         </div>
                         <TextArea
-                            rows={4}
-                            name="message"
-                            value={this.props.values.message}
+                            rows={6}
+                            name="researchMaterial"
+                            value={this.props.values.researchMaterial}
                             onChange={this.props.handleChange}
-                            //helperText={(this.props.errors.message && this.props.touched.message) && this.props.errors.message}
                         />
                     </Col>
                 </Row>
@@ -29,4 +28,4 @@ export class Step5 extends Component {
     }
 }
 
-export default Step5;
+export default Step6;
