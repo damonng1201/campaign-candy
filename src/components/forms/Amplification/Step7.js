@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Checkbox } from 'antd';
 import CustomStyle from '../../../style.module.css';
 
@@ -21,6 +22,7 @@ export class Step7 extends Component {
                             <Checkbox value="Video" className={CustomStyle.checkboxText}>Video</Checkbox>
                             <Checkbox value="Experiential" className={CustomStyle.checkboxText}>Experiential</Checkbox>
                         </Checkbox.Group>
+                        <ErrorMessage name="amplificationFormat" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

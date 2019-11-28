@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
-import { Layout, Steps, Row, Col, Button, Spin } from 'antd';
+import { Layout, Steps, Row, Col, Button, Spin, message } from 'antd';
 import { Link } from 'react-router-dom';
 import FooterSection from '../../FooterSection';
 import Step0 from './Step0';
@@ -56,6 +56,35 @@ export class ResearchInsightsForm extends Component {
         });
     }
 
+    handleSubmit = (values, formikBag) => {
+        const {setSubmitting, validateForm, setTouched} = formikBag;
+        
+        if (this.state.step !== steps.length){
+            setSubmitting(false);
+            this.nextStep();
+            validateForm();
+            setTouched({});
+            return;
+        }
+
+        //this.toggle(true);
+        axios.post('https://www.sphclass.com.sg/guidedselling/api/sendmail.php', { values })
+            .then(res => {
+                //this.setState({ loading: false });
+                message.info('Email sent.');
+                console.log(res);
+                console.log(res.data);
+                setSubmitting(false);
+            })
+            .catch(function (error) {
+                //this.setState({ loading: false });
+                // handle error
+                message.error('Error');
+                console.log(error);
+                setSubmitting(false);
+            });
+    };
+
     render() {
         const { step } = this.state;
 
@@ -89,24 +118,7 @@ export class ResearchInsightsForm extends Component {
                                 additionalAudience: [],
                                 budget: 0
                             }}
-                            onSubmit={(values, { setSubmitting }) => {
-                                this.toggle(true);
-                                /*setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
-                                setSubmitting(false);
-                                }, 1000);*/
-                                axios.post('http://localhost:8888/api/sendmail.php', { values })
-                                    .then(res => {
-                                        this.toggle(false);
-                                        console.log(res);
-                                        console.log(res.data);
-                                    })
-                                    .catch(function (error) {
-                                        this.toggle(false);
-                                        // handle error
-                                        console.log(error);
-                                    })
-                            }}
+                            onSubmit={this.handleSubmit}
                         >
                             {props => (
                                 <form onSubmit={props.handleSubmit}>

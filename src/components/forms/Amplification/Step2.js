@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Icon, Checkbox, Input } from 'antd';
 import CustomStyle from '../../../style.module.css'; 
 
@@ -30,13 +31,17 @@ export class Step2 extends Component {
                             <Checkbox value="Convertions" className={CustomStyle.checkboxText}>Convertions</Checkbox>
                             <Checkbox value="Others" className={CustomStyle.checkboxText} onChange={(e)=>{this.setState({enableOthersField:e.target.checked})}}>Others (Please specify)</Checkbox>
                         </Checkbox.Group>
+                        <ErrorMessage name="objectives" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                         {this.state.enableOthersField &&(
-                            <Input 
-                                name="objectiveOthers"
-                                value={this.props.values.objectiveOthers}
-                                onChange={this.props.handleChange}
-                                style={{ width: 200 }}
-                            />
+                            <div>
+                                <Input 
+                                    name="objectiveOthers"
+                                    value={this.props.values.objectiveOthers}
+                                    onChange={this.props.handleChange}
+                                    style={{ width: 200 }}
+                                />
+                                <ErrorMessage name="objectiveOthers" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
+                            </div>
                         )}
                     </Col>
                 </Row>
@@ -53,6 +58,7 @@ export class Step2 extends Component {
                             value={this.props.values.keyChallenges}
                             onChange={this.props.handleChange}
                         />
+                        <ErrorMessage name="keyChallenges" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

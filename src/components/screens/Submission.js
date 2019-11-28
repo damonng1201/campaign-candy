@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Input, Button } from 'antd';
 import CustomStyle from '../../style.module.css'; 
 
@@ -34,6 +35,7 @@ export class Submission extends Component {
                             value={this.props.values.email}
                             onChange={this.props.handleChange}
                         />
+                        <ErrorMessage name="email" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
                 <Row>

@@ -42,3 +42,8 @@ h4.briefType,
 .checkboxText {
     font-weight: 500;
 }
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+}

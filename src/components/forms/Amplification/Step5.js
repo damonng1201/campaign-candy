@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Input } from 'antd';
 import CustomStyle from '../../../style.module.css';
 
@@ -20,8 +21,8 @@ export class Step5 extends Component {
                             name="message"
                             value={this.props.values.message}
                             onChange={this.props.handleChange}
-                            //helperText={(this.props.errors.message && this.props.touched.message) && this.props.errors.message}
                         />
+                        <ErrorMessage name="message" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Icon, DatePicker, Checkbox, Input } from 'antd';
 import moment from 'moment';
 import CustomStyle from '../../../style.module.css';
@@ -27,7 +28,7 @@ export class Step10 extends Component {
                         </div>
                         <DatePicker
                             format="DD/MM/YYYY"
-                            value={moment(this.props.values.completionDate)}
+                            value={moment(this.props.values.completionDate, 'DD/MM/YYYY')}
                             onChange={(date,dateString)=>this.props.setFieldValue('completionDate', dateString)}
                             allowClear={false}
                             style={{ width: '100%' }}
@@ -39,7 +40,7 @@ export class Step10 extends Component {
                         </div>
                         <DatePicker
                             format="DD/MM/YYYY"
-                            value={moment(this.props.values.presentationDate)}
+                            value={moment(this.props.values.presentationDate, 'DD/MM/YYYY')}
                             onChange={(date,dateString)=>this.props.setFieldValue('presentationDate', dateString)}
                             allowClear={false}
                             style={{ width: '100%' }}
@@ -59,6 +60,7 @@ export class Step10 extends Component {
                             <Checkbox value="Post Reports" className={CustomStyle.checkboxText}>Post Reports</Checkbox>
                             <Checkbox value="Others" className={CustomStyle.checkboxText} onChange={(e)=>{this.setState({enableOthersField:e.target.checked})}}>Others (Please specify)</Checkbox>
                         </Checkbox.Group>
+                        <ErrorMessage name="deliverables" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                         {this.state.enableOthersField &&(
                             <Input 
                                 name="deliverableOthers"

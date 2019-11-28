@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Checkbox, Input } from 'antd';
 import CustomStyle from '../../../style.module.css';
 
@@ -29,6 +30,7 @@ export class Step8 extends Component {
                             <Checkbox value="CPC" className={CustomStyle.checkboxText}>CPC</Checkbox>
                             <Checkbox value="Others" className={CustomStyle.checkboxText} onChange={(e)=>{this.setState({enableOthersField:e.target.checked})}}>Others (Please specify)</Checkbox>
                         </Checkbox.Group>
+                        <ErrorMessage name="measurement" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                         {this.state.enableOthersField &&(
                             <Input 
                                 name="measurementOthers"

@@ -4,7 +4,7 @@ import { Layout, Row, Col, Typography, Input, Select, DatePicker, InputNumber, B
 import { Link } from 'react-router-dom';
 import FooterSection from '../../FooterSection';
 import moment from 'moment';
-import axios from 'axios';
+//import axios from 'axios';
 import CustomStyle from '../../../style.module.css'; 
 
 const { Header, Content } = Layout;
@@ -89,17 +89,18 @@ export class DigitalAdsForm extends Component {
                             onSubmit={(values, { setSubmitting }) => {
                                 this.toggle(true);
                                 setTimeout(() => {
+                                    this.toggle(false);
                                     alert(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 1000);
                                 /*axios.post('http://localhost:8888/api/sendmail.php', { values })
                                     .then(res => {
-                                        this.toggle(false);
+                                        this.setState({ loading: false });
                                         console.log(res);
                                         console.log(res.data);
                                     })
                                     .catch(function (error) {
-                                        this.toggle(false);
+                                        this.setState({ loading: false });
                                         // handle error
                                         console.log(error);
                                     });*/

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
-import { Layout, Steps, Row, Col, Button, Spin } from 'antd';
+import * as Yup from 'yup';
+import { Layout, Row, Col, Button, Spin, message } from 'antd';
 import { Link } from 'react-router-dom';
 import FooterSection from '../../FooterSection';
 import Step0 from './Step0';
@@ -19,21 +20,134 @@ import moment from 'moment';
 import axios from 'axios';
 import CustomStyle from '../../../style.module.css'; 
 
-const { Step } = Steps;
+//const { Step } = Steps;
 const { Header, Content } = Layout;
 
+const StepZero = {
+    label: 'Step 0',
+    validationSchema: Yup.object().shape({
+        accountLead: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Sales/Account Lead is required'),
+        advertiserBrand: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Advertiser/Agency Brand is required'),
+        name: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Name is required'),
+        projectTitle: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Project Title is required'),
+        launchDate: Yup.string()
+            .required('Launch Date is required'),
+        campaignEndDate: Yup.string()
+            .required('Campaign End Date is required')
+    })
+};
+
+const StepOne = {
+    label: 'Step 1',
+    validationSchema: Yup.object().shape({
+        background: Yup.string().required('Please select Background'),
+        ideation: Yup.string().required('Ideation is required')
+    })
+};
+
+const StepTwo = {
+    label: 'Step 2',
+    validationSchema: Yup.object().shape({
+        objectives: Yup.array().required('At least one objective is required'),
+        objectiveOthers: Yup.string().when('objectives', {
+            is: 'Others',
+            then: Yup.string().required('Other field is required')
+        }),
+        keyChallenges: Yup.string().required('Key Challenges is required')
+    })
+};
+
+const StepThree = {
+    label: 'Step 3',
+    validationSchema: Yup.object().shape({
+        targetAudience: Yup.array().required('At least one Target Audience is required')
+    })
+};
+
+const StepFour = {
+    label: 'Step 4',
+    validationSchema: Yup.object().shape({
+        competitiveProduct: Yup.array().required('At least one Benchmark Brand/Product is required')
+    })
+};
+
+const StepFive = {
+    label: 'Step 5',
+    validationSchema: Yup.object().shape({
+        message: Yup.string().required('Message is required')
+    })
+};
+
+const StepSix = {
+    label: 'Step 6',
+    validationSchema: Yup.object().shape({
+        creativeFormat: Yup.array().required('At least one Creative Format is required')
+    })
+};
+
+const StepSeven = {
+    label: 'Step 7',
+    validationSchema: Yup.object().shape({
+        amplificationFormat: Yup.array().required('At least one Amplification Format is required')
+    })
+};
+
+const StepEight = {
+    label: 'Step 8',
+    validationSchema: Yup.object().shape({
+        measurement: Yup.array().required('At least one Measurement is required')
+    })
+};
+
+const StepNine = {
+    label: 'Step 9',
+    validationSchema: Yup.object().shape({
+        budget: Yup.number().min(1)
+    })
+};
+
+const StepTen = {
+    label: 'Step 10',
+    validationSchema: Yup.object().shape({
+        deliverables: Yup.array().required('At least one Deliverable is required')
+    })
+};
+
+const StepSubmission = {
+    label: 'Step Submission',
+    validationSchema: Yup.object().shape({
+        email: Yup.string().matches(/^(\s?[^\s,]+@[^\s,]+\.[^\s,]+\s?,)*(\s?[^\s,]+@[^\s,]+\.[^\s,]+)$/g, {
+            message: 'Your input contains invalid email(s)',
+            excludeEmptyString: true 
+        }).required('Email is required')
+    })
+};
+
 const steps = [
-    'Step 1 of 10', 
-    'Step 2 of 10', 
-    'Step 3 of 10', 
-    'Step 4 of 10', 
-    'Step 5 of 10', 
-    'Step 6 of 10', 
-    'Step 7 of 10', 
-    'Step 8 of 10', 
-    'Step 9 of 10', 
-    'Step 10 of 10',
-    'Submission'
+    StepZero,
+    StepOne,
+    StepTwo,
+    StepThree,
+    StepFour,
+    StepFive,
+    StepSix,
+    StepSeven,
+    StepEight,
+    StepNine,
+    StepTen,
+    StepSubmission
 ];
 
 export class AmplificationForm extends Component {
@@ -60,6 +174,35 @@ export class AmplificationForm extends Component {
         });
     }
 
+    handleSubmit = (values, formikBag) => {
+        const {setSubmitting, validateForm, setTouched} = formikBag;
+        
+        if (this.state.step !== steps.length){
+            setSubmitting(false);
+            this.nextStep();
+            validateForm();
+            setTouched({});
+            return;
+        }
+
+        this.toggle(true);
+        axios.post('https://www.sphclass.com.sg/guidedselling/api/sendmail.php', { values })
+            .then(res => {
+                this.toggle(false);
+                message.info('Email sent.');
+                console.log(res);
+                console.log(res.data);
+                setSubmitting(false);
+            })
+            .catch(function (error) {
+                this.toggle(false);
+                // handle error
+                message.error('Error');
+                console.log(error);
+                setSubmitting(false);
+            });
+    };
+
     render() {
         const { step } = this.state;
 
@@ -70,13 +213,6 @@ export class AmplificationForm extends Component {
                         <Link to="/"><img style={{ maxHeight: '100%' }} src={ require('../../../images/logo.png') } alt="logo"></img></Link>
                     </Header>
                     <Content style={{ width: '90%', margin: 'auto' }}>
-                        {step > 1 && step !== steps.length + 1 && (
-                            <Steps className={CustomStyle.steps} size="small" current={this.state.step - 2}>
-                                {steps.map(item => (
-                                    <Step key={item} />
-                                ))}
-                            </Steps>
-                        )}
                         <Formik
                             initialValues={{
                                 accountLead: '',
@@ -88,30 +224,26 @@ export class AmplificationForm extends Component {
                                 background: '',
                                 ideation: '',
                                 objectives: [],
+                                objectiveOthers: '',
                                 keyChallenges: '',
                                 targetAudience: [],
                                 additionalAudience: [],
-                                budget: 0
+                                competitiveProduct: [],
+                                message: '',
+                                creativeFormat: [],
+                                amplificationFormat: [],
+                                measurement: [],
+                                measurementOthers: '',
+                                budget: 0,
+                                completionDate: moment(Date.now()).format('DD/MM/YYYY'),
+                                presentationDate: moment(Date.now()).format('DD/MM/YYYY'),
+                                deliverables: '',
+                                deliverableOthers: '',
+                                otherMandates: '',
+                                email: ''
                             }}
-                            onSubmit={(values, { setSubmitting }) => {
-                                this.toggle(true);
-                                setTimeout(() => {
-                                    alert(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
-                                    this.toggle(false);
-                                }, 1000);
-                                /*axios.post('http://localhost:8888/api/sendmail.php', { values })
-                                    .then(res => {
-                                        this.toggle(false);
-                                        console.log(res);
-                                        console.log(res.data);
-                                    })
-                                    .catch(function (error) {
-                                        this.toggle(false);
-                                        // handle error
-                                        console.log(error);
-                                    });*/
-                            }}
+                            validationSchema={steps[this.state.step - 1].validationSchema}
+                            onSubmit={this.handleSubmit}
                         >
                             {props => (
                                 <form onSubmit={props.handleSubmit}>
@@ -234,16 +366,16 @@ export class AmplificationForm extends Component {
                                         />
                                     )}
                                     <Row type="flex" justify="end">
-                                        { step > 1 && step !== steps.length + 1 && (
+                                        { step > 1 && step !== steps.length && (
                                             <Col className={ CustomStyle.btnContainer }>
                                                 <Button type="primary" onClick={this.previousStep}>
                                                     Back
                                                 </Button>
                                             </Col>
                                         )}
-                                        { step < steps.length + 1 && (
+                                        { step < steps.length && (
                                             <Col className={ CustomStyle.btnContainer }>
-                                                <Button type="primary" onClick={this.nextStep}>
+                                                <Button type="primary" onClick={props.handleSubmit}>
                                                     Next
                                                 </Button>
                                             </Col>

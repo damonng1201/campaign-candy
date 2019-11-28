@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Icon, Input, DatePicker } from 'antd';
 import moment from 'moment';
 import CustomStyle from '../../../style.module.css'; 
@@ -25,8 +26,8 @@ export class Step0 extends Component {
                             placeholder="Enter Name"
                             value={this.props.values.accountLead}
                             onChange={this.props.handleChange}
-                            //helperText={(this.props.errors.accountLead && this.props.touched.accountLead) && this.props.errors.accountLead}
                         />
+                        <ErrorMessage name="accountLead" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
 
@@ -46,8 +47,8 @@ export class Step0 extends Component {
                             value={this.props.values.advertiserBrand}
                             onChange={this.props.handleChange}
                             onBlur={this.props.handleBlur}
-                            //helperText={(this.props.errors.advertiserBrand && this.props.touched.advertiserBrand) && this.props.errors.advertiserBrand}
                         />
+                        <ErrorMessage name="advertiserBrand" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
                         <div className={CustomStyle.labelContainer}>
@@ -59,8 +60,8 @@ export class Step0 extends Component {
                             value={this.props.values.name}
                             onChange={this.props.handleChange}
                             onBlur={this.props.handleBlur}
-                            //helperText={(this.props.errors.name && this.props.touched.name) && this.props.errors.name}
                         />
+                        <ErrorMessage name="name" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
 
@@ -80,8 +81,8 @@ export class Step0 extends Component {
                             value={this.props.values.projectTitle}
                             onChange={this.props.handleChange}
                             onBlur={this.props.handleBlur}
-                            //helperText={(this.props.errors.projectTitle && this.props.touched.projectTitle) && this.props.errors.projectTitle}
                         />
+                        <ErrorMessage name="projectTitle" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
 
@@ -103,6 +104,7 @@ export class Step0 extends Component {
                             allowClear={false}
                             style={{ width: '100%' }}
                         />
+                        <ErrorMessage name="launchDate" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                     <Col xs={24} sm={12} lg={12} className={CustomStyle.colPadding}>
                         <div className={CustomStyle.labelContainer}>
@@ -115,6 +117,7 @@ export class Step0 extends Component {
                             allowClear={false}
                             style={{ width: '100%' }}
                         />
+                        <ErrorMessage name="campaignEndDate" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

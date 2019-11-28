@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, InputNumber } from 'antd';
+import CustomStyle from '../../../style.module.css';
 
 const { Title } = Typography;
 
@@ -19,6 +21,7 @@ export class Step9 extends Component {
                             onChange={value => this.props.setFieldValue('budget', value)}
                             style={{ width: '100%' }}
                         />
+                        <ErrorMessage name="budget" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

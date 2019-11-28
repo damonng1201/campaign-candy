@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Select } from 'antd';
+import CustomStyle from '../../../style.module.css';
 
 const { Title } = Typography;
 
@@ -17,6 +19,7 @@ export class Step4 extends Component {
                             value={this.props.values.competitiveProduct}
                             onChange={(value)=>this.props.setFieldValue('competitiveProduct', value)} tokenSeparators={[',']}
                         ></Select>
+                        <ErrorMessage name="competitiveProduct" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

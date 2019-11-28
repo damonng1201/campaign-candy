@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Icon, Typography, Radio, Input } from 'antd';
+import CustomStyle from '../../../style.module.css';
 
 const { TextArea } = Input;
 const { Title } = Typography;
@@ -18,7 +20,7 @@ export class Step1 extends Component {
                             <Radio value="b2b">B to B</Radio>
                             <Radio value="b2c">B to C</Radio>
                         </Radio.Group>
-                        
+                        <ErrorMessage name="background" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
                 <Row>
@@ -31,6 +33,7 @@ export class Step1 extends Component {
                             value={this.props.values.ideation}
                             onChange={this.props.handleChange}
                         />
+                        <ErrorMessage name="ideation" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
             </React.Fragment>

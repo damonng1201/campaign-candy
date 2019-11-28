@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { ErrorMessage } from 'formik';
 import { Row, Col, Typography, Select } from 'antd';
+import CustomStyle from '../../../style.module.css';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -68,11 +70,12 @@ export class Step3 extends Component {
                             mode="multiple"
                             style={{ width: '100%' }}
                             placeholder="Please select"
-                            value={this.props.values.targetAudiences}
-                            onChange={(value)=>this.props.setFieldValue('targetAudiences', value)}
+                            value={this.props.values.targetAudience}
+                            onChange={(value)=>this.props.setFieldValue('targetAudience', value)}
                         >
                             {options}
                         </Select>
+                        <ErrorMessage name="targetAudience" render={msg => <div className={CustomStyle.errorMsg}>{msg}</div>} />
                     </Col>
                 </Row>
                 <Row>
