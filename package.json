@@ -5,7 +5,7 @@
   "homepage": "https://www.sphclass.com.sg/guidedselling",
   "dependencies": {
     "antd": "^3.25.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.0",
     "customize-cra": "^0.9.1",
     "formik": "^2.0.3",
